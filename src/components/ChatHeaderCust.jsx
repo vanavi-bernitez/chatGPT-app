@@ -1,7 +1,7 @@
 import React from "react";
 import { ChatBubbleLeftRightIcon, PhoneIcon } from "@heroicons/react/24/solid";
 
-const ChatHeaderCustom = ({ chat }) => {
+const ChatHeaderCust = ({ chat }) => {
   return (
     <div className="chat-header">
       <div className="flexbetween">
@@ -10,10 +10,14 @@ const ChatHeaderCustom = ({ chat }) => {
       </div>
       <div className="flexbetween">
         <PhoneIcon className="icon-phone" />
-        <p className="header-text">{chat.description}</p>
+        {chat.description !== "⬅️ ⬅️ ⬅️" ? (
+          <p className="header-text">{chat.description}</p>
+        ) : (
+          <p className="header-text">No chat selected</p>
+        )}
       </div>
     </div>
   );
 };
 
-export { ChatHeaderCustom };
+export { ChatHeaderCust };

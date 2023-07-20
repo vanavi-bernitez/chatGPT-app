@@ -4,12 +4,14 @@ import {
   MultiChatSocket,
   MultiChatWindow,
 } from "react-chat-engine-advanced";
-import { ChatHeaderCustom } from "./ChatHeaderCustom";
+
+import { ChatHeaderCust } from "./ChatHeaderCust";
+import { StandardMessageFormCust } from "./StandardMessageFormCust";
 
 const Chat = () => {
-  const projectId = import.meta.env.CHAT_ENGINE_PROJECT_ID;
-  const username = "testUser1";
-  const secret = import.meta.env.CHAT_ENGINE_USER_SECRET;
+  const projectId = import.meta.env.VITE_CHAT_ENGINE_PROJECT_ID;
+  const username = import.meta.env.VITE_CHAT_ENGINE_USERNAME;
+  const secret = import.meta.env.VITE_CHAT_ENGINE_USER_SECRET;
 
   const chatProps = useMultiChatLogic(projectId, username, secret);
 
@@ -19,7 +21,16 @@ const Chat = () => {
       <MultiChatWindow
         {...chatProps}
         style={{ height: "100vh" }}
-        renderChatHeader={(chat) => <ChatHeaderCustom chat={chat} />}
+        renderChatHeader={(chat) => <ChatHeaderCust chat={chat} />}
+        // Check if i can set it without return
+        renderMessageForm={(props) => {
+          return (
+            <StandardMessageFormCust
+              props={props}
+              activeChat={chatProps.chat}
+            />
+          );
+        }}
       />
     </div>
   );
