@@ -7,8 +7,6 @@ import {
 import Dropzone from "react-dropzone";
 
 const StandardMessageFormCust = ({ props, activeChat }) => {
-  console.log(props);
-  console.log(activeChat);
   const [message, setMessage] = useState("");
   const [attachment, setAttachment] = useState("");
   const [preview, setPreview] = useState("");
@@ -31,7 +29,28 @@ const StandardMessageFormCust = ({ props, activeChat }) => {
     setPreview(URL.createObjectURL(acceptedFiles[0])); //URL that reference the contents of the specified source
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const date = new Date()
+      .toISOString()
+      .replace("T", " ")
+      .replace("Z", `${Math.floor(Math.random() * 1000)}+00:00`);
+
+    const attachments = attachment
+      ? [{ blob: attachment, file: attachment.file }]
+      : []; 
+
+    const form = {
+      attachments,
+      created: date,
+      sender_username: props.username,
+      text: message,
+      activeChatId: activeChat.id,
+    };
+
+    props.onSubmit(form);
+    setMessage("");
+    setAttachment("");
+  };
 
   return (
     <div className="message-form-container">
@@ -80,7 +99,7 @@ const StandardMessageFormCust = ({ props, activeChat }) => {
             className="message-form-icon-airplane"
             onClick={() => {
               setPreview("");
-              // handleSubmit()
+              handleSubmit();
             }}
           />
         </div>
