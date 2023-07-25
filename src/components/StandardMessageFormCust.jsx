@@ -36,8 +36,8 @@ const StandardMessageFormCust = ({ props, activeChat }) => {
       .replace("Z", `${Math.floor(Math.random() * 1000)}+00:00`);
 
     const attachments = attachment
-      ? [{ blob: attachment, file: attachment.file }]
-      : []; 
+      ? [{ blob: attachment, file: attachment.name }]
+      : [];
 
     const form = {
       attachments,
@@ -48,8 +48,10 @@ const StandardMessageFormCust = ({ props, activeChat }) => {
     };
 
     props.onSubmit(form);
+
     setMessage("");
     setAttachment("");
+    setPreview("");
   };
 
   return (
@@ -77,30 +79,25 @@ const StandardMessageFormCust = ({ props, activeChat }) => {
         </div>
         <div className="message-form-icons">
           <Dropzone
-            acceptedFiles=".jpg,.jpeg,.png"
+            accept={{ "image/*": [".jpeg", ".jpg"] }}
             multiple={false}
             noClick={true}
             onDrop={handleOnDrop}
           >
-            {({ getRootProps, getInputProps, open }) => {
-              return (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <PaperClipIcon
-                    className="message-form-icon-clip"
-                    onClick={open}
-                  />
-                </div>
-              );
-            }}
+            {({ getRootProps, getInputProps, open }) => (
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <PaperClipIcon
+                  className="message-form-icon-clip"
+                  onClick={open}
+                />
+              </div>
+            )}
           </Dropzone>
           <hr className="vertical-line" />
           <PaperAirplaneIcon
             className="message-form-icon-airplane"
-            onClick={() => {
-              setPreview("");
-              handleSubmit();
-            }}
+            onClick={handleSubmit}
           />
         </div>
       </div>
