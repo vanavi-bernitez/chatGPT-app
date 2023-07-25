@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+//endpoint i want to call
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASSE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
   reducerPath: "main",
   tagTypes: [],
   endpoints: (builder) => ({
