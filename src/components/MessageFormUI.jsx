@@ -7,13 +7,15 @@ import {
 import Dropzone from "react-dropzone";
 
 const MessageFormUI = ({
+  handleOnLoad,
   handleOnClick,
-  handleOnDrop,
-  message,
   handleOnChange,
+  handleOnDrop,
   handleSubmit,
+  message,
+  preview,
 }) => {
-  const [preview, setPreview] = useState("");
+  //   const [preview, setPreview] = useState("");
   return (
     <div className="message-form-container">
       {preview && (
