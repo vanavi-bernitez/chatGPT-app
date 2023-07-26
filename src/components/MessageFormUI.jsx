@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   PaperAirplaneIcon,
   PaperClipIcon,
@@ -15,7 +15,6 @@ const MessageFormUI = ({
   message,
   preview,
 }) => {
-  //   const [preview, setPreview] = useState("");
   return (
     <div className="message-form-container">
       {preview && (

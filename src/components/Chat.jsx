@@ -7,6 +7,7 @@ import {
 
 import { ChatHeaderCust } from "./ChatHeaderCust";
 import { StandardMessageFormCust } from "./StandardMessageFormCust";
+import { Ai } from "./Ai";
 
 const Chat = () => {
   const projectId = import.meta.env.VITE_CHAT_ENGINE_PROJECT_ID;
@@ -22,14 +23,17 @@ const Chat = () => {
         {...chatProps}
         style={{ height: "100vh" }}
         renderChatHeader={(chat) => <ChatHeaderCust chat={chat} />}
-        // Check if i can set it without return
         renderMessageForm={(props) => {
-          return (
-            <StandardMessageFormCust
-              props={props}
-              activeChat={chatProps.chat}
-            />
-          );
+          if (chatProps.chat?.title.startsWith("AiChat_")) {
+            return <Ai props={props} activeChat={chatProps.chat} />;
+          } else {
+            return (
+              <StandardMessageFormCust
+                props={props}
+                activeChat={chatProps.chat}
+              />
+            );
+          }
         }}
       />
     </div>

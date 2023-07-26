@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { MessageFormUI } from "./MessageFormUI";
+import { generateDate } from "../helpers/generateDate";
 
 const StandardMessageFormCust = ({ props, activeChat }) => {
   const [message, setMessage] = useState("");
@@ -26,18 +27,13 @@ const StandardMessageFormCust = ({ props, activeChat }) => {
   };
 
   const handleSubmit = () => {
-    const date = new Date()
-      .toISOString()
-      .replace("T", " ")
-      .replace("Z", `${Math.floor(Math.random() * 1000)}+00:00`);
-
     const attachments = attachment
       ? [{ blob: attachment, file: attachment.name }]
       : [];
 
     const form = {
       attachments,
-      created: date,
+      created: generateDate(),
       sender_username: props.username,
       text: message,
       activeChatId: activeChat.id,

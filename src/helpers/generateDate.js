@@ -1,0 +1,10 @@
+const generateDate = () => {
+  const generatedDate = new Date()
+    .toISOString()
+    .replace("T", " ")
+    .replace("Z", `${Math.floor(Math.random() * 1000)}+00:00`);
+
+  return generatedDate;
+};
+
+export { generateDate };
