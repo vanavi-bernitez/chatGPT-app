@@ -7,12 +7,13 @@ import {
 
 import { ChatHeaderCust } from "./ChatHeaderCust";
 import { StandardMessageFormCust } from "./StandardMessageFormCust";
-import { Ai } from "./Ai";
+import { AiText } from "./AiText.jsx";
+import { AiCode } from "./AiCode.jsx";
 
-const Chat = () => {
+const Chat = ({ user, secret }) => {
   const projectId = import.meta.env.VITE_CHAT_ENGINE_PROJECT_ID;
-  const username = import.meta.env.VITE_CHAT_ENGINE_USERNAME;
-  const secret = import.meta.env.VITE_CHAT_ENGINE_USER_SECRET;
+  const username = import.meta.env.VITE_CHAT_ENGINE_USERNAME; //TODO: change to users input
+  const secret = import.meta.env.VITE_CHAT_ENGINE_USER_SECRET; //TODO: change to users input
 
   const chatProps = useMultiChatLogic(projectId, username, secret);
 
@@ -25,7 +26,9 @@ const Chat = () => {
         renderChatHeader={(chat) => <ChatHeaderCust chat={chat} />}
         renderMessageForm={(props) => {
           if (chatProps.chat?.title.startsWith("AiChat_")) {
-            return <Ai props={props} activeChat={chatProps.chat} />;
+            return <AiText props={props} activeChat={chatProps.chat} />;
+          } else if (chatProps.chat?.title.startsWith("AiCode_")) {
+            return <AiCode props={props} activeChat={chatProps.chat} />;
           } else {
             return (
               <StandardMessageFormCust

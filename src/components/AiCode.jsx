@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 import { MessageFormUI } from "./MessageFormUI";
-import { generateDate } from "../helpers/generateDate";
-import { usePostAiTextMutation } from "../../state/api";
+import { generateDate } from "../helpers/generateDate.js";
+import { usePostAiCodeMutation } from "../../state/api.js";
 
-const Ai = ({ props, activeChat }) => {
+const AiCode = ({ props, activeChat }) => {
   const [message, setMessage] = useState("");
   const [attachment, setAttachment] = useState("");
   const [preview, setPreview] = useState("");
-  const [trigger] = usePostAiTextMutation();
+  const [triggerCode] = usePostAiCodeMutation();
 
   const handleOnLoad = () => {
     URL.revokeObjectURL(preview);
@@ -42,7 +42,7 @@ const Ai = ({ props, activeChat }) => {
     };
 
     props.onSubmit(form);
-    trigger(form);
+    triggerCode(form);
 
     setMessage("");
     setAttachment("");
@@ -62,4 +62,4 @@ const Ai = ({ props, activeChat }) => {
   );
 };
 
-export { Ai };
+export { AiCode };
