@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import "./App.css";
 import { Chat } from "./components/Chat";
 import { Login } from "./components/Login";
 
@@ -9,6 +8,7 @@ const App = () => {
   const [user, setUser] = useState(false);
   const [secret, setSecret] = useState(false);
   const isAuth = user && state;
+ 
   return (
     <div className="App">
       <BrowserRouter>

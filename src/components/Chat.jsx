@@ -12,10 +12,10 @@ import { AiCode } from "./AiCode.jsx";
 
 const Chat = ({ user, secret }) => {
   const projectId = import.meta.env.VITE_CHAT_ENGINE_PROJECT_ID;
-  const username = import.meta.env.VITE_CHAT_ENGINE_USERNAME; //TODO: change to users input
-  const secret = import.meta.env.VITE_CHAT_ENGINE_USER_SECRET; //TODO: change to users input
+  // const usernameTEST = import.meta.env.VITE_CHAT_ENGINE_USERNAME; //TODO: change to users input
+  // const secretTEST = import.meta.env.VITE_CHAT_ENGINE_USER_SECRET; //TODO: change to users input
 
-  const chatProps = useMultiChatLogic(projectId, username, secret);
+  const chatProps = useMultiChatLogic(projectId, user, secret);
 
   return (
     <div className="Chat" style={{ flexBasis: "100%" }}>

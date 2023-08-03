@@ -25,6 +25,13 @@ const Login = ({ setUser, setSecret }) => {
 
   //todo: useeffect
 
+  useEffect(() => {
+    if (resultLogin.data?.response) {
+      setUser(username);
+      setSecret(password);
+    }
+  }, [resultLogin.data]);
+
   return (
     <div className="login-page">
       <div className="login-container">
@@ -60,6 +67,7 @@ const Login = ({ setUser, setSecret }) => {
               Login
             </button>
           )}
+          
         </div>
       </div>
     </div>
