@@ -5,10 +5,10 @@ import { Chat } from "./components/Chat";
 import { Login } from "./components/Login";
 
 const App = () => {
-  const [user, setUser] = useState(false);
-  const [secret, setSecret] = useState(false);
-  const isAuth = user && state;
- 
+  const [user, setUser] = useState(null);
+  const [secret, setSecret] = useState(null);
+  const isAuth = Boolean(user) && Boolean(state);
+
   return (
     <div className="App">
       <BrowserRouter>

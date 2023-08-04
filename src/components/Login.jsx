@@ -21,6 +21,7 @@ const Login = ({ setUser, setSecret }) => {
 
   const handleLogin = () => {
     triggerLogin({ username, password });
+    console.log(username, password);
   };
 
   //todo: useeffect
@@ -37,7 +38,7 @@ const Login = ({ setUser, setSecret }) => {
       <div className="login-container">
         <h2 className="title">Title</h2>
         <p className="register-change" onClick={handleRegisterChange}>
-          {isRegister ? "Already a user?" : "Are you a new user?"}{" "}
+          {isRegister ? "Already a user?" : "Are you a new user?"}
         </p>
 
         <div>
@@ -67,7 +68,6 @@ const Login = ({ setUser, setSecret }) => {
               Login
             </button>
           )}
-          
         </div>
       </div>
     </div>
