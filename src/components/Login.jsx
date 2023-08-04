@@ -8,6 +8,7 @@ const Login = ({ setUser, setSecret }) => {
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isUserAuth, setIsUserAuth] = useState(true);
   const [triggerLogin, resultLogin] = usePostLoginMutation();
   const [triggerSignup] = usePostSignupMutation();
 
@@ -21,22 +22,23 @@ const Login = ({ setUser, setSecret }) => {
 
   const handleLogin = () => {
     triggerLogin({ username, password });
-    console.log(username, password);
   };
 
-  //todo: useeffect
-
   useEffect(() => {
-    if (resultLogin.data?.response) {
+    if (resultLogin.data?.response.is_authenticated === true) {
       setUser(username);
       setSecret(password);
+    } else {
+      setUser(null);
+      setSecret(null);
+      setIsUserAuth(false);
     }
   }, [resultLogin.data]);
 
   return (
     <div className="login-page">
       <div className="login-container">
-        <h2 className="title">Title</h2>
+        <h2 className="title">HERE GOES A TITLE</h2>
         <p className="register-change" onClick={handleRegisterChange}>
           {isRegister ? "Already a user?" : "Are you a new user?"}
         </p>
@@ -57,6 +59,10 @@ const Login = ({ setUser, setSecret }) => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
+
+        {/* TODO: make the wrong credentials message logic works */}
+
+        {isUserAuth && <p>Wrong credentials. Try again</p>}
 
         <div className="login-actions">
           {isRegister ? (

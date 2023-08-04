@@ -7,7 +7,7 @@ import { Login } from "./components/Login";
 const App = () => {
   const [user, setUser] = useState(null);
   const [secret, setSecret] = useState(null);
-  const isAuth = Boolean(user) && Boolean(state);
+  const isAuth = Boolean(user) && Boolean(secretco);
 
   return (
     <div className="App">
